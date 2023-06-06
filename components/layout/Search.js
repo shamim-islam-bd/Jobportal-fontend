@@ -1,4 +1,4 @@
-import React from "react";
+import Image from "next/image";
 
 const Search = () => {
   return (
@@ -6,7 +6,7 @@ const Search = () => {
       <div className="modalWrapper">
         <div className="left">
           <div style={{ width: "100%", height: "100%", position: "relative" }}>
-            <img src="/images/job-search.svg" alt="search" />
+            <Image width={50} height={50} src="/images/job-search.svg" alt="search" />
           </div>
         </div>
         <div className="right">

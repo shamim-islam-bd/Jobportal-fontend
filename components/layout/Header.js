@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const Header = () => {
@@ -6,7 +7,7 @@ const Header = () => {
       <div className="navContainer">
         <Link href="/">
           <div className="logoImgWrapper">
-            <img width="30" height="30" src="/images/logo.png" alt="" />
+            <Image width={40} height={40} src="/images/logo.png" alt="" />
           </div>
           <span className="logo1">Job</span>
           <span className="logo2">bee</span>

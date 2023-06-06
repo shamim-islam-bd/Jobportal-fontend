@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 const NotFound = () => {
   return (
     <div className="page-not-found-wrapper">
-      <img src="/images/404.svg" height="550" width="550" alt="404_not_found" />
+      <Image width={550} height={550} src="/images/404.svg" alt="404_not_found" />
 
       <h5>
         Page Not Found. Go to <Link href="/">Homepage</Link>{" "}
