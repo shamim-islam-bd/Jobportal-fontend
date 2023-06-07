@@ -1,15 +1,15 @@
 import Link from "next/link";
 import JobItem from "./job/JobItem";
 import Filters from "./layout/Filters";
+import { NextSeo } from "next-seo";
 
 export default function Home({ data }) {
-
   const {jobs, count, resPerPage} = data;
-
-  console.log("data Home", data);
 
   return (
     <>
+      <NextSeo title="Jobs" description="all jobs" />
+
       <div className="container container-fluid">
         <div className="row">
           <div className="col-xl-3 col-lg-4">
