@@ -1,7 +1,7 @@
+import axios from "axios";
 import { useRouter } from "next/router";
 import { createContext, useState } from "react";
-import { errorToast } from "./Toast";
-import axios from "axios";
+import { errorToast, successToast } from "./Toast";
 
 export const AuthContext = createContext();
 
@@ -13,26 +13,37 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
 
-  const login = async (user) => {
+  // Register here ...
+
+  // Login here ...
+  const login = async ({ username, password }) => {
     try {
         setLoading(true);
-        const res = await axios.post(`/api/auth/login`, {user})
-        const data = await res.json()
-        console.log(res);
-        
-        if (res.ok) {
-            setUser(data.user);
-            setSuccess(data.message);
-            setIsAuthenticated(true);
-            setLoading(false);
-            router.push("/");
+        const res = await axios.post(`/api/auth/login`, { username, password });
+  
+        if (res.status === 200) {
+          const data = res.data;
+          setIsAuthenticated(true);
+          setLoading(false);
+          successToast(data.message);
+          router.push("/");
+        } else {
+          setLoading(false);
+          errorToast("Invalid Credentials");
         }
-
-    } catch (error) {
+      } catch (error) {
         setLoading(false);
-        errorToast(error.message)
+        errorToast("Invalid Credentials");
+      }
+    };
+
+  // Loggin user ...
+  const loadUser = async () => {
+    
     }
-  }
+
+  // Logout here ...
+
 
 
   return (

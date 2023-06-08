@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 async function getData(query) {
-  console.log("query", query);
+  // console.log("query", query);
 
   const jobType = query?.jobType || "";
   const education = query?.education || "";
@@ -25,7 +25,7 @@ async function getData(query) {
 
   const queryStr = `?keyword=${keyword}&location=${location}&page=${page}&jobType=${jobType}&education=${education}&experience=${experience}&salary=${salary}&min_salary=${min_salary}&max_salary=${max_salary}`;
 
-  const res = await fetch(`${process.env.API_URL}/jobs/${queryStr}`);
+  const res = await fetch(`${process.env.API_URL}/api/jobs/${queryStr}`);
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }

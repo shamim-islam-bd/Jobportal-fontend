@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  
+
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,8 +28,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const user = { username: email, password };
-    login(user);
+    login({ username: email, password });
   };
 
   return (
