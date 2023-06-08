@@ -1,13 +1,48 @@
+import { AuthContext } from "@/context/AuthContext";
+import { errorToast } from "@/context/Toast";
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+  
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { isAuthenticated, errors, login, success, loading } = useContext(AuthContext);
+
+  
+  useEffect(() => {
+    if(errors) {
+      errorToast(errors);
+    }
+    if (isAuthenticated) {
+      router.push("/");
+    }
+  }, [isAuthenticated, loading]);
+
+
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const user = { username: email, password };
+    login(user);
+  };
+
   return (
     <div className="modalMask">
       <div className="modalWrapper">
         <div className="left">
           <div style={{ width: "100%", height: "100%", position: "relative" }}>
-            <img src="/images/login.svg" alt="login" />
+            <Image
+              width={500}
+              height={500}
+              src="/images/login.svg"
+              alt="login"
+            />
           </div>
         </div>
         <div className="right">
@@ -15,11 +50,16 @@ const Login = () => {
             <div className="headerWrapper">
               <h2> LOGIN</h2>
             </div>
-            <form className="form">
+            <form className="form" onSubmit={handleLogin}>
               <div className="inputWrapper">
                 <div className="inputBox">
                   <i aria-hidden className="fas fa-envelope"></i>
-                  <input type="email" placeholder="Enter Your Email" required />
+                  <input
+                    type="email"
+                    placeholder="Enter Your Email"
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
                 <div className="inputBox">
                   <i aria-hidden className="fas fa-key"></i>
@@ -27,6 +67,7 @@ const Login = () => {
                     type="password"
                     placeholder="Enter Your Password"
                     required
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>

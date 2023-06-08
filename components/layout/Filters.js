@@ -1,6 +1,35 @@
-import React from "react";
+import { useRouter } from "next/router";
 
 const Filters = () => {
+  const router = useRouter();
+
+  // for checkboxes that are not in the query, set them to false by default
+  // for checkboxes that are in the query, set them to true by default
+  const handleClick = (checkbox) => {
+    const checkBoxes = document.getElementsByName(checkbox.name);
+    const query = router.query;
+
+    checkBoxes?.forEach((item) => {
+      if (item !== checkbox) item.checked = false;
+    });
+
+    if (checkbox.checked === false) {
+      // delete the filter from the query
+      query[checkbox.name] = "";
+    } else {
+      // add the filter to the query
+      query[checkbox.name] = checkbox.value;
+
+      router.push({ pathname: "/", query: query });
+    }
+  };
+
+  const handleCheck = (checkboxType, checkBoxValue) => {
+    const query = router.query;
+
+    (query[checkboxType] === checkBoxValue) ? true : false;
+  };
+
   return (
     <div className="sidebar mt-5">
       <h3>Filters</h3>
@@ -15,6 +44,8 @@ const Filters = () => {
           name="jobType"
           id="check1"
           value="Permanent"
+          defaultChecked={handleCheck("jobType", "Permanent")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check1">
           Permanent
@@ -28,6 +59,8 @@ const Filters = () => {
           name="jobType"
           id="check2"
           value="Temporary"
+          defaultChecked={handleCheck("jobType", "Temporary")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check2">
           Temporary
@@ -41,6 +74,8 @@ const Filters = () => {
           name="jobType"
           id="check3"
           value="Internship"
+          defaultChecked={handleCheck("jobType", "Internship")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check3">
           Internship
@@ -57,6 +92,8 @@ const Filters = () => {
           name="education"
           id="check4"
           value="Bachelors"
+          defaultChecked={handleCheck("education", "Bachelors")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check4">
           Bachelors
@@ -70,6 +107,8 @@ const Filters = () => {
           name="education"
           id="check5"
           value="Masters"
+          defaultChecked={handleCheck("education", "Masters")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check5">
           Masters
@@ -83,6 +122,8 @@ const Filters = () => {
           name="education"
           id="check6"
           value="Phd"
+          defaultChecked={handleCheck("education", "Phd")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check6">
           Phd
@@ -100,6 +141,8 @@ const Filters = () => {
           name="experience"
           id="check7"
           value="No Experience"
+          defaultChecked={handleCheck("experience", "No Experience")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check7">
           No Experience
@@ -113,6 +156,8 @@ const Filters = () => {
           name="experience"
           id="check8"
           value="1 Years"
+          defaultChecked={handleCheck("experience", "1 Years")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check8">
           1 Years
@@ -126,6 +171,8 @@ const Filters = () => {
           name="experience"
           id="check9"
           value="2 Years"
+          defaultChecked={handleCheck("experience", "2 Years")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check9">
           2 Years
@@ -139,6 +186,8 @@ const Filters = () => {
           name="experience"
           id="check10"
           value="3 Years above"
+          defaultChecked={handleCheck("experience", "3 Years above")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check10">
           3 Year+
@@ -155,6 +204,8 @@ const Filters = () => {
           name="salary"
           id="check11"
           value="1-50000"
+          defaultChecked={handleCheck("salary", "1-50000")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check11">
           $1 - $50000
@@ -168,6 +219,8 @@ const Filters = () => {
           name="salary"
           id="check12"
           value="50000-100000"
+          defaultChecked={handleCheck("salary", "50000-100000")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check12">
           $50000 - $100,000
@@ -181,6 +234,8 @@ const Filters = () => {
           name="salary"
           id="check13"
           value="100000-200000"
+          defaultChecked={handleCheck("salary", "100000-200000")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check13">
           $100,000 - $200,000
@@ -194,6 +249,8 @@ const Filters = () => {
           name="salary"
           id="defaultCheck2"
           value="300000-500000"
+          defaultChecked={handleCheck("salary", "300000-500000")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="defaultCheck2">
           $300,000 - $500,000
@@ -207,6 +264,8 @@ const Filters = () => {
           name="salary"
           id="check14"
           value="500000-1000000"
+          defaultChecked={handleCheck("salary", "500000-1000000")}
+          onClick={(e) => handleClick(e.target)}
         />
         <label className="form-check-label" htmlFor="check14">
           $500,000 - $1,000,000
