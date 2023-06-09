@@ -12,16 +12,18 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { isAuthenticated, errors, login, success, loading } = useContext(AuthContext);
+  const { isAuthenticated, errors, login, clearErrors, loadUser, loading } = useContext(AuthContext);
 
   
   useEffect(() => {
     if(errors) {
       errorToast(errors);
+      clearErrors();
     }
     if (isAuthenticated) {
       router.push("/");
     }
+    loadUser();
   }, [isAuthenticated, loading]);
 
 

@@ -11,9 +11,8 @@ export default async (req, res) => {
     }
 
     try {
-      const response = await axios.post(
-        `${process.env.API_URL}/api/me/`,
-        {
+      const response = await axios.get(
+        `${process.env.API_URL}/api/me/`,{
           headers: {
             Authorization: `Bearer ${access}`,
           },
@@ -24,7 +23,7 @@ export default async (req, res) => {
         res.status(200).json({user: response.data});
       } else {
         res.status(response.status).json({
-          error: "Authentication failed",
+          error: "Authentication failed.",
         });
       }
     } catch (error) {
