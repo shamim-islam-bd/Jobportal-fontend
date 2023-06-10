@@ -37,11 +37,11 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span>Hi, {user.first_name}</span>{" "}
+                <span className="">Hi, {user.first_name}</span>{" "}
               </span>
 
               <div
-                className="dropdown-menu"
+                className="dropdown-menu "
                 aria-labelledby="dropDownMenuButton"
               >
                 <Link href="/employeer/jobs" className="dropdown-item">

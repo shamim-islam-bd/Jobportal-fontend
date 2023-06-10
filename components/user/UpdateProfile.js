@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "@/context/AuthContext";
 import { errorToast } from "@/context/Toast";
+import { NextSeo } from "next-seo";
 
 const UpdateProfile = ({ access_token }) => {
   const [first_name, setFirstName] = useState("");
@@ -47,6 +48,8 @@ const UpdateProfile = ({ access_token }) => {
   };
 
   return (
+    <>
+    <NextSeo title="My Profile" description="My jobs" />
     <div className="modalMask">
       <div className="modalWrapper">
         <div className="left">
@@ -116,6 +119,7 @@ const UpdateProfile = ({ access_token }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

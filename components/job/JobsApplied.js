@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import Link from "next/link";
 import DataTable from "react-data-table-component";
 
@@ -55,6 +56,8 @@ const JobsApplied = ({ jobs }) => {
     });
 
   return (
+    <>
+    <NextSeo title="Applied jobs" description="My jobs" />
     <div className="row">
       <div className="col-2"></div>
       <div className="col-8 mt-5">
@@ -63,6 +66,7 @@ const JobsApplied = ({ jobs }) => {
       </div>
       <div className="col-2"></div>
     </div>
+    </>
   );
 };
 

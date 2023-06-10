@@ -32,10 +32,10 @@ const Filters = () => {
 
   return (
     <div className="sidebar mt-5">
-      <h3>Filters</h3>
+      <h3 className="font-bold text-xl">Filters</h3>
 
       <hr />
-      <h5 className="filter-heading mb-3">Job Type</h5>
+      <h5 className="filter-heading my-3 font-bold">Job Type</h5>
 
       <div className="form-check">
         <input
@@ -77,13 +77,13 @@ const Filters = () => {
           defaultChecked={handleCheck("jobType", "Internship")}
           onClick={(e) => handleClick(e.target)}
         />
-        <label className="form-check-label" htmlFor="check3">
+        <label className="form-check-label mb-3" htmlFor="check3">
           Internship
         </label>
       </div>
 
       <hr />
-      <h5 className="mb-3">Education</h5>
+      <h5 className="my-3 font-bold">Education</h5>
 
       <div className="form-check">
         <input
@@ -125,14 +125,14 @@ const Filters = () => {
           defaultChecked={handleCheck("education", "Phd")}
           onClick={(e) => handleClick(e.target)}
         />
-        <label className="form-check-label" htmlFor="check6">
+        <label className="form-check-label mb-3" htmlFor="check6">
           Phd
         </label>
       </div>
 
       <hr />
 
-      <h5 className="mb-3">Experience</h5>
+      <h5 className="my-3 font-bold">Experience</h5>
 
       <div className="form-check">
         <input
@@ -189,13 +189,13 @@ const Filters = () => {
           defaultChecked={handleCheck("experience", "3 Years above")}
           onClick={(e) => handleClick(e.target)}
         />
-        <label className="form-check-label" htmlFor="check10">
+        <label className="form-check-label mb-3" htmlFor="check10">
           3 Year+
         </label>
       </div>
 
       <hr />
-      <h5 className="mb-3">Salary Range</h5>
+      <h5 className="my-3 font-bold">Salary Range</h5>
 
       <div className="form-check">
         <input

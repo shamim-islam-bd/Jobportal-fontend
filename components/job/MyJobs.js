@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 
 import JobContext from "@/context/JobContext";
 import { errorToast } from "@/context/Toast";
+import { NextSeo } from "next-seo";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import DataTable from "react-data-table-component";
@@ -88,14 +89,18 @@ const MyJobs = ({ jobs, access_token }) => {
     });
 
   return (
-    <div className="row">
-      <div className="col-2"></div>
-      <div className="col-8 mt-5">
-        <h4 className="my-5 text-2xl font-bold">My Jobs</h4>
-        <DataTable columns={columns} data={data} pagination responsive />
+    <>
+      <NextSeo title="My jobs" description="My jobs" />
+
+      <div className="row">
+        <div className="col-2"></div>
+        <div className="col-8 mt-5">
+          <h4 className="my-5 text-2xl font-bold">My Jobs</h4>
+          <DataTable columns={columns} data={data} pagination responsive />
+        </div>
+        <div className="col-2"></div>
       </div>
-      <div className="col-2"></div>
-    </div>
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ import {
 import JobContext from "@/context/JobContext";
 import { errorToast, successToast } from "@/context/Toast";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 
 const NewJob = ({ access_token }) => {
   const router = useRouter();
@@ -62,6 +63,8 @@ const NewJob = ({ access_token }) => {
   };
 
   return (
+    <>
+    <NextSeo title="Post A job" description="Post A job" />
     <div className="newJobcontainer">
       <div className="formWrapper">
         <div className="headerWrapper">
@@ -228,6 +231,7 @@ const NewJob = ({ access_token }) => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

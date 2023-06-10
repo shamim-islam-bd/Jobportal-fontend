@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "@/context/AuthContext";
 import { errorToast, successToast } from "@/context/Toast";
+import { NextSeo } from "next-seo";
 
 const UploadResume = ({ access_token }) => {
   const [resume, setResume] = useState(null);
@@ -47,6 +48,8 @@ const UploadResume = ({ access_token }) => {
   };
 
   return (
+    <> 
+    <NextSeo title="Upload Resume" description="Upload Resume" />
     <div className="modalMask">
       <div className="modalWrapper">
         <div className="left">
@@ -103,6 +106,7 @@ const UploadResume = ({ access_token }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

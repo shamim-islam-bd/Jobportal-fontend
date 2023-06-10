@@ -29,7 +29,6 @@ export default function Home({ data }) {
   return (
     <>
       <NextSeo title="Jobs" description="all jobs" />
-
       <div className="container container-fluid">
         <div className="row">
           <div className="col-xl-3 col-lg-4">
@@ -40,12 +39,13 @@ export default function Home({ data }) {
             <div className="my-5">
               <h4 className="page-title">
                 {
-                  keyword ? `Jobs for ${keyword}` :  "Latest Jobs"
+                  keyword ? `Jobs for ${keyword}` :  <p className="text-xl mb-2 font-bold">Latest Jobs</p>
                 }
               </h4>
+              {/* bg-[#007BFF] */}
               <Link href="/stats">
-                <div className="btn btn-secondary float-right stats_btn">
-                  Get Topic stats
+                <div className="border-solid text-white bg-[#007bffad] float-right stats_btn">
+                  Get Topic Query
                 </div>
               </Link>
               <div className="d-block">
