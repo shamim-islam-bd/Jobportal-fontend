@@ -1,15 +1,8 @@
-import MyJobs from "../../../components/job/MyJobs";
-
+import MyJobs from "@/components/job/MyJobs";
 import { isAuthenticatedUser } from "@/utils/isAuthenticatedUser";
 import axios from "axios";
-
-export default function MyJobsPage({ jobs, access_token }) {
-  return <MyJobs jobs={jobs} access_token={access_token} />;
-}
-
 export async function getServerSideProps({ req }) {
   const access_token = req.cookies.access;
-
   const user = await isAuthenticatedUser(access_token);
 
   if (!user) {
@@ -27,12 +20,17 @@ export async function getServerSideProps({ req }) {
     },
   });
 
-  const jobs = res.data;
+  // console.log("jobs: ", res);
 
+  const jobs = res.data;
   return {
     props: {
       jobs,
       access_token,
     },
   };
+}
+
+export default function MyJobsPage({ jobs, access_token }) {
+  return <MyJobs jobs={jobs} access_token={access_token} />;
 }

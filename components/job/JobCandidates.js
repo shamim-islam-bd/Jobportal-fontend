@@ -36,16 +36,13 @@ const JobCandidates = ({ candidatesApplied }) => {
         id: item.user,
         salary: item.salary,
         resume: (
-          <Link href={`https://jobbee.s3.amazonaws.com/${item.resume}`}>
-            <a
-              className="text-success text-center ml-4"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <b>
-                <i aria-hidden className="fas fa-download"></i> View Resume
-              </b>
-            </a>
+          <Link
+            href={`https://jobbee.s3.amazonaws.com/${item.resume}`}
+            className="text-success text-center ml-4"
+          >
+            <b>
+              <i aria-hidden className="fas fa-download"></i> View Resume
+            </b>
           </Link>
         ),
         appliedAt: item.appliedAt.substring(0, 10),

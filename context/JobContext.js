@@ -59,10 +59,7 @@ export const JobProvider = ({ children }) => {
       }
     } catch (error) {
       setLoading(false);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+       errorToast(error?.response?.data?.message);
     }
   };
 
@@ -152,10 +149,7 @@ export const JobProvider = ({ children }) => {
       setDeleted(true);
     } catch (error) {
       setLoading(false);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      errorToast(error?.response?.data?.message);
     }
   };
 

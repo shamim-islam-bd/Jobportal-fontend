@@ -1,14 +1,8 @@
-import UpdateJob from "../../../components/job/UpdateJob";
-import NotFound from "../../../components/layout/NotFound";
+import UpdateJob from "@/components/job/UpdateJob";
+import NotFound from "@/components/layout/NotFound";
 
 import { isAuthenticatedUser } from "@/utils/isAuthenticatedUser";
 import axios from "axios";
-
-export default function UpdateJobPage({ job, access_token, error }) {
-  if (error?.includes("Not found")) return <NotFound />;
-
-  return <UpdateJob job={job} access_token={access_token} />;
-}
 
 export async function getServerSideProps({ req, params }) {
   const access_token = req.cookies.access;
@@ -44,4 +38,10 @@ export async function getServerSideProps({ req, params }) {
       },
     };
   }
+}
+
+export default function UpdateJobPage({ job, access_token, error }) {
+  if (error?.includes("Not found")) return <NotFound />;
+
+  return <UpdateJob job={job} access_token={access_token} />;
 }
