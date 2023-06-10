@@ -7,8 +7,6 @@ import { useRouter } from "next/router";
 import DataTable from "react-data-table-component";
 
 const MyJobs = ({ jobs, access_token }) => {
-  console.log("MyJobs: ", jobs);
-
   const { clearErrors, error, loading, deleted, deleteJob, setDeleted } =
     useContext(JobContext);
 

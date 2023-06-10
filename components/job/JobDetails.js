@@ -13,7 +13,7 @@ const JobDetails = ({ job, access_token }) => {
     education,
     createdAt,
     email,
-    positon,
+    position,
     jobType,
     lastDate,
     experience,
@@ -123,6 +123,12 @@ const JobDetails = ({ job, access_token }) => {
                         <td>Education</td>
                         <td>:</td>
                         <td>{education}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Position</td>
+                        <td>:</td>
+                        <td>{position}</td>
                       </tr>
 
                       <tr>

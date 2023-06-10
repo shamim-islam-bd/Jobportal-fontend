@@ -5,11 +5,12 @@ import {
   industriesOptions,
   jobTypeOptions,
 } from "./data";
-
 import JobContext from "@/context/JobContext";
 import { errorToast, successToast } from "@/context/Toast";
+import { useRouter } from "next/router";
 
 const NewJob = ({ access_token }) => {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ const NewJob = ({ access_token }) => {
     if (created) {
       setCreated(false);
       successToast("Job Posted successfully.");
+      router.push("/employeer/jobs");
     }
   }, [error, created]);
 

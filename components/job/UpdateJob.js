@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import {
-  jobTypeOptions,
-  educationOptions,
-  industriesOptions,
-  experienceOptions,
-} from "./data";
 import JobContext from "@/context/JobContext";
 import { errorToast } from "@/context/Toast";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
+import {
+  educationOptions,
+  experienceOptions,
+  industriesOptions,
+  jobTypeOptions,
+} from "./data";
 
 const UpdateJob = ({ job, access_token }) => {
   const [title, setTitle] = useState("");
@@ -19,7 +19,7 @@ const UpdateJob = ({ job, access_token }) => {
   const [industry, setIndustry] = useState("Business");
   const [experience, setExperience] = useState("No Experience");
   const [salary, setSalary] = useState("");
-  const [positions, setPositions] = useState("");
+  const [position, setPosition] = useState("");
   const [company, setCompany] = useState("");
 
   const router = useRouter();
@@ -38,7 +38,7 @@ const UpdateJob = ({ job, access_token }) => {
       setIndustry(job.industry);
       setExperience(job.experience);
       setSalary(job.salary);
-      setPositions(job.positions);
+      setPosition(job.position);
       setCompany(job.company);
     }
 
@@ -66,7 +66,7 @@ const UpdateJob = ({ job, access_token }) => {
       industry,
       experience,
       salary,
-      positions,
+      position,
       company,
     };
 
@@ -143,9 +143,9 @@ const UpdateJob = ({ job, access_token }) => {
                   <i aria-hidden className="fas fa-users"></i>
                   <input
                     type="number"
-                    placeholder="Enter No. of Positions"
-                    value={positions}
-                    onChange={(e) => setPositions(e.target.value)}
+                    placeholder="Enter No. of position"
+                    value={position}
+                    onChange={(e) => setPosition(e.target.value)}
                     required
                   />
                 </div>

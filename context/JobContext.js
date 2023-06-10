@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useState } from "react";
-import { errorToast } from "./Toast";
+import { errorToast, successToast } from "./Toast";
 
 const JobContext = createContext();
 
@@ -40,11 +40,13 @@ export const JobProvider = ({ children }) => {
 
   // Update job
   const updateJob = async (id, data, access_token) => {
+    // console.log(data);
+
     try {
       setLoading(true);
 
       const res = await axios.put(
-        `${process.env.API_URL}/api/jobs/${id}/update/`,
+        `${process.env.API_URL}/api/jobs/${id}/`,
         data,
         {
           headers: {
@@ -137,7 +139,7 @@ export const JobProvider = ({ children }) => {
       setLoading(true);
 
       const res = await axios.delete(
-        `${process.env.API_URL}/api/jobs/${id}/delete/`,
+        `${process.env.API_URL}/api/jobs/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -145,8 +147,11 @@ export const JobProvider = ({ children }) => {
         }
       );
 
+      console.log(res);
+
       setLoading(false);
       setDeleted(true);
+      successToast("Job deleted successfully");
     } catch (error) {
       setLoading(false);
       errorToast(error?.response?.data?.message);
