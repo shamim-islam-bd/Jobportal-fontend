@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [uploaded, setUploaded] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
 
@@ -114,10 +115,35 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // access_token
-//    const access_token = user?.access_token;
-//    console.log("authContext------: ", access_token);
+  // Upload Resume ------ incomplete *****
+  const uploadResumeFunc = async (formData, access_token) => {
 
+    console.log("uploadResumeFunc: ",formData);
+
+    try {
+      setLoading(true);
+      const res = await axios.put(
+        `${process.env.API_URL}/api/upload/`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+
+      console.log(res);
+
+      if (res.data.resume) {
+        setLoading(false);
+        setUploaded(true);
+      }
+    } catch (error) {
+      console.log(error.response);
+      setLoading(false);
+      errorToast(error?.response?.data?.message);
+    }
+  };
 
   // clear Errors
   const clearErrors = () => setErrors(null);
@@ -135,7 +161,9 @@ export const AuthProvider = ({ children }) => {
         loadUser,
         register,
         clearErrors,
-        // access_token,
+        uploaded,
+        setUploaded,
+        uploadResumeFunc,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const isAuthenticatedUser = async (access_token) => {
-  console.log("isAuthenticatedUser: ", access_token);
+  // console.log("isAuthenticatedUser: ", access_token);
 
   try {
     const response = await axios.post(

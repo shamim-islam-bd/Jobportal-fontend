@@ -1,41 +1,41 @@
-import JobDetails from "@/components/job/JobDetails";
-import Loader from "@/components/layout/Loader";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import NotFoundPage from "../404";
+import Layout from "../../components/layout/Layout";
+import NotFound from "../../components/layout/NotFound";
+import JobDetails from "../../components/job/JobDetails";
 
-async function getJobData(jobId) {
-  const res = await fetch(`${process.env.API_URL}/jobs/${jobId}`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch job data");
+import axios from "axios";
+
+export async function getServerSideProps({ req, params }) {
+  try {
+    const res = await axios.get(
+      `${process.env.API_URL}/api/jobs/${params.id}/`
+    );
+
+    
+    const job = res.data.job;
+    const candidates = res.data.candidates;
+
+    const access_token = req.cookies.access || "";
+
+    return {
+      props: {
+        job,
+        candidates,
+        access_token,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: error?.response?.data?.detail,
+      },
+    };
   }
-  return res.json();
 }
 
-export default function JobDetailsPage() {
-    const [job, setJob] = useState(null);
-    const [error, setError] = useState(null);
-    const router = useRouter();
-    const { id } = router.query;
-
-    useEffect(() => {
-        const fetchJobData = async () => {
-          try {
-            const jobData = await getJobData(id);
-            setJob(jobData);
-          } catch (error) {
-            setError(error);
-          }
-        };
-    
-        if (id) {
-          fetchJobData();
-        }
-      }, [id]);
+export default function JobDetailsPage({ job, candidates, access_token, error}) {
+  if (error?.includes("Not found")) return <NotFound />;
 
   return (
-    <div>
-      {!job ? <NotFoundPage /> : job ? <JobDetails job={job} /> : <Loader />}
-    </div>
+    <JobDetails job={job} candidates={candidates} access_token={access_token} />
   );
 }
